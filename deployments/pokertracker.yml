@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pokertracker
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        visualize: "true"
+        name: pokertracker
+        version: 0.0.10
+    spec:
+      containers:
+      - resources:
+          limits:
+            cpu: 500m
+            memory: 750Mi
+        env:
+        - name: CASSANDRA_IP
+          value: cassandra
+        name: pokertracker
+        image: robertbrem/pokertracker-docker:0.0.10
+        ports:
+        - containerPort: 8080

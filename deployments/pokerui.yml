@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pokerui
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        visualize: "true"
+        name: pokerui
+        version: 0.0.6
+    spec:
+      containers:
+      - resources:
+          limits:
+            cpu: 250m
+        env:
+        - name: POKERTRACKER_URL
+          value: http://5.189.154.24:30080/pokertracker/
+        name: pokerui
+        image: robertbrem/pokerui-docker:0.0.6
+        ports:
+        - containerPort: 3000

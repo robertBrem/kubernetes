@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pokertracker
+  labels:
+    name: pokertracker
+    visualize: "true"
+spec:
+  ports:
+  - port: 8282
+    targetPort: 8080
+    nodePort: 30080
+  selector:
+    name: pokertracker
+  type: NodePort
