@@ -9,10 +9,13 @@ spec:
       labels:
         visualize: "true"
         name: pokertracker
-        version: 0.0.10
+        version: 0.0.13
     spec:
       containers:
       - resources:
+          requests:
+            cpu: 250m
+            memory: 500Mi
           limits:
             cpu: 500m
             memory: 750Mi
@@ -20,6 +23,12 @@ spec:
         - name: CASSANDRA_IP
           value: cassandra
         name: pokertracker
-        image: robertbrem/pokertracker-docker:0.0.10
+        image: robertbrem/pokertracker-docker:0.0.13
         ports:
         - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /pokertracker/resources/players
+            port: 8080
+          initialDelaySeconds: 15
+          timeoutSeconds: 10

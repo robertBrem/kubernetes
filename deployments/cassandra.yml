@@ -39,11 +39,6 @@ spec:
           volumeMounts:
             - mountPath: /cassandra_data
               name: data
-          readinessProbe:
-            exec:
-              command: nodetool status
-            initialDelaySeconds: 10
-            timeoutSeconds: 1
       volumes:
         - name: data
           emptyDir: {}

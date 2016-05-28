@@ -9,7 +9,7 @@ spec:
       labels:
         visualize: "true"
         name: pokerui
-        version: 0.0.6
+        version: 0.0.9
     spec:
       containers:
       - resources:
@@ -19,6 +19,6 @@ spec:
         - name: POKERTRACKER_URL
           value: http://5.189.154.24:30080/pokertracker/
         name: pokerui
-        image: robertbrem/pokerui-docker:0.0.6
+        image: robertbrem/pokerui-docker:0.0.9
         ports:
         - containerPort: 3000
