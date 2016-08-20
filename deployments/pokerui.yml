@@ -9,7 +9,7 @@ spec:
       labels:
         visualize: "true"
         name: pokerui
-        version: 0.0.9
+        version: 0.1.1
     spec:
       containers:
       - resources:
@@ -20,15 +20,11 @@ spec:
             cpu: 250m
             memory: 500Mi
         env:
-        - name: POKERTRACKER_URL
-          value: http://5.189.154.24:30080/pokertracker/
+        - name: POKERTRACKER_COMMAND_URL
+          value: http://5.189.173.45:30080/pokertracker/
+        - name: POKERTRACKER_QUERY_URL
+          value: http://5.189.173.45:30083/pokertracker-query/
         name: pokerui
-        image: robertbrem/pokerui-docker:0.0.9
+        image: robertbrem/pokerui-docker:0.1.1
         ports:
         - containerPort: 3000
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 15
-          timeoutSeconds: 5

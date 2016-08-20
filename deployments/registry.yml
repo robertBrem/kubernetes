@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: registry
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        visualize: "true"
+        name: registry
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        name: worker-3
+      containers:
+      - name: registry
+        image: registry:2
+        volumeMounts:
+          - mountPath: /tmp/registry-dev
+            name: registrydata
+        ports:
+          - containerPort: 5000
+      volumes:
+        - name: registrydata
+          hostPath:
+            path: /root/volumes/registrydata 

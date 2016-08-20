@@ -13,13 +13,6 @@ spec:
       containers:
         - command:
             - /run.sh
-          resources:
-            requests:
-              memory: 250Mi
-              cpu: 250m
-            limits:
-              cpu: 500m
-              memory: 512Mi
           env:
             - name: MAX_HEAP_SIZE
               value: 512M

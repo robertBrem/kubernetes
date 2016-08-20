@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: devoxx-adesso
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        visualize: "true"
+        name: devoxx-adesso
+        version: 0.0.1
+    spec:
+      containers:
+      - resources:
+          requests:
+            cpu: 250m
+            memory: 250Mi
+          limits:
+            cpu: 250m
+            memory: 500Mi
+        name: devoxx-adesso
+        image: robertbrem/devoxx-adesso-docker:0.0.1
+        ports:
+        - containerPort: 4200

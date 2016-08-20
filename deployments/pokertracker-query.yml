@@ -1,23 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: pokertracker
+  name: pokertracker-query
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         visualize: "true"
-        name: pokertracker
-        version: 0.1.0
+        name: pokertracker-query
+        version: 0.0.1
     spec:
       containers:
       - env:
-        - name: CASSANDRA_ADDRESS
-          value: cassandra
         - name: KAFKA_ADDRESS
           value: kafka:9092
         name: pokertracker
-        image: robertbrem/pokertracker-docker:0.1.0
+        image: robertbrem/pokertracker-query-docker:0.0.1
         ports:
         - containerPort: 8080

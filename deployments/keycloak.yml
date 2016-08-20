@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        visualize: "true"
+        name: keycloak
+        version: 0.0.1
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        name: worker-1
+      containers:
+      - name: keycloak
+        image: robertbrem/keycloak:1.9.5
+        env:
+        - name: KEYCLOAK_USER
+          value: admin
+        - name: KEYCLOAK_PASSWORD
+          value: admin
+        volumeMounts:
+          - mountPath: /opt/jboss/keycloak/standalone/data
+            name: keycloakdata
+        ports:
+          - name: http
+            containerPort: 8080
+          - name: https
+            containerPort: 8443
+      volumes:
+        - name: keycloakdata
+          hostPath:
+            path: /root/volumes/keycloakdata 
